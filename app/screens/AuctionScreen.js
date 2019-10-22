@@ -23,5 +23,6 @@ export default function AuctionScreen() {
 }
 
 AuctionScreen.navigationOptions = {
-  title: "Leilões",
+  //title: "Leilões",
+  header: null
 };

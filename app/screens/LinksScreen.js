@@ -29,5 +29,6 @@ export default function LinksScreen() {
 }
 
 LinksScreen.navigationOptions = {
-  title: 'Buscar',
+  //title: 'Buscar',
+  header: null
 };

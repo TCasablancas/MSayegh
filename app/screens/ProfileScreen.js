@@ -154,5 +154,6 @@ const Color = ({ value }) => {
 
 
 ProfileScreen.navigationOptions = {
-  title: 'Meu Perfil',
+  //title: 'Meu Perfil',
+  header: null
 };

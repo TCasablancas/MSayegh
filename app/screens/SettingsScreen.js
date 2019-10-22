@@ -10,5 +10,6 @@ export default function FavouritesScreen() {
 }
 
 FavouritesScreen.navigationOptions = {
-  title: 'Favoritos',
+  //title: 'Favoritos',
+  header: null
 };
