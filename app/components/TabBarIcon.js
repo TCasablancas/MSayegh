@@ -5,11 +5,11 @@ import Colors from '../constants/Colors';
 
 export default function TabBarIcon(props) {
   return (
-    <Ionicons
+    <Feather
       name={props.name}
       size={22}
       style={{ marginBottom: -8 }}
-      color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      color="#fff"
     />
   );
 }

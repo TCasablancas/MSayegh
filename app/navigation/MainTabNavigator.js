@@ -15,15 +15,16 @@ const config = Platform.select({
 });
 
 const HomeStack = createStackNavigator(
-  { Home: HomeScreen, },
+  { Home: HomeScreen, }, {
+    
+  },
   config
 );
 
 HomeStack.navigationOptions = {
   tabBarLabel: "Início",
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused}
-      name={ Platform.OS === 'ios' ? 'ios-home' : 'home' } />
+    <TabBarIcon name="home" />
   ),
 };
 HomeStack.path = '';
@@ -36,7 +37,7 @@ const LinksStack = createStackNavigator(
 LinksStack.navigationOptions = {
   tabBarLabel: 'Buscar',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'} />
+    <TabBarIcon name= "search" />
   ),
 };
 LinksStack.path = '';
@@ -51,7 +52,7 @@ const AuctionStack = createStackNavigator(
 AuctionStack.navigationOptions = {
   tabBarLabel: 'Leilões',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-user' : 'md-user'} />
+    <TabBarIcon name="align-justify" />
   ),
 };
 AuctionStack.path = '';
@@ -64,9 +65,9 @@ const SettingsStack = createStackNavigator(
 );
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'Favoritos',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-user' : 'md-user'} />
+    <TabBarIcon name="star" />
   ),
 };
 SettingsStack.path = '';
@@ -81,7 +82,7 @@ const ProfileStack = createStackNavigator(
 ProfileStack.navigationOptions = {
   tabBarLabel: 'Perfil',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-user' : 'md-user'} />
+    <TabBarIcon name="user" />
   ),
 };
 ProfileStack.path = '';
@@ -92,6 +93,12 @@ const tabNavigator = createBottomTabNavigator({
   AuctionStack,
   SettingsStack,
   ProfileStack,
+}, {
+  tabBarOptions: {
+    style: {
+      backgroundColor: '#000',
+    }
+  }
 });
 
 tabNavigator.path = '';

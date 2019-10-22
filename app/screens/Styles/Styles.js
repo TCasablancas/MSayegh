@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#f3f3f3'
@@ -13,32 +13,7 @@ const Styles = StyleSheet.create({
       textAlign: 'center',
     },
     contentContainer: {
-      marginTop: 230,
-    },
-    tabBarInfoContainer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      ...Platform.select({
-        ios: {
-          shadowColor: 'black',
-          shadowOffset: { width: 0, height: -3 },
-          shadowOpacity: 0.1,
-          shadowRadius: 3,
-        },
-        android: {
-          elevation: 20,
-        },
-      }),
-      alignItems: 'center',
-      backgroundColor: '#fbfbfb',
-      paddingVertical: 20,
-    },
-    tabBarInfoText: {
-      fontSize: 17,
-      color: 'rgba(96,100,109, 1)',
-      textAlign: 'center',
+      marginTop: 0,
     },
     mainView: {
       marginBottom: 30,
@@ -60,7 +35,6 @@ const Styles = StyleSheet.create({
       marginBottom: 10,
       
     },
-
     buttonWhite: {
       backgroundColor: '#fff',
       color: '#666',
@@ -152,10 +126,6 @@ const Styles = StyleSheet.create({
     shelfContainer: {
       height: 200,
       marginBottom: 20,
-    },
-    statusBar: {
-      backgroundColor: "#C2185B",
-      height: 80,
-    },
+    }
   });
   
