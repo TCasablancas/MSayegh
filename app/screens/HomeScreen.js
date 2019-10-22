@@ -1,6 +1,5 @@
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import { Header, headerTitle, headerRight } from 'react-native-elements';
+import { Header } from 'react-native-elements';
 
 import {
   Image,
@@ -24,20 +23,20 @@ import TabStyles from '../screens/Styles/TabStyles';
 
 export default function HomeScreen() {
   return (
-      
-      <ScrollView style={styles.container}>
+      <ScrollView>
         <View style={ homeStyles.container }>
           <View><Text style={homeStyles.title}>Olá Thiago, seja bem vindo.</Text></View>
-            <View style={styles.mainView}>
+            <View style={homeStyles.mainView}>
+                
                 <Tabs />
-
-                <View style={styles.mainCard}>
-                    <Text style={styles.textMainCard}>Próximo Leilão</Text>
-                    <Text style={styles.callMainCard}>32º Leilão de Joias</Text> 
+                
+                <View style={homeStyles.mainCard}>
+                    <Text style={homeStyles.textMainCard}>Próximo Leilão</Text>
+                    <Text style={homeStyles.callMainCard}>32º Leilão de Joias</Text> 
                 </View>
                 
                 <View>
-                    <Text style={styles.title}>Veja mais itens</Text>
+                    <Text style={homeStyles.title}>Veja mais itens</Text>
                         <Shelf>
                         <ItemShelf>
                             <ItemImage 
@@ -63,3 +62,7 @@ export default function HomeScreen() {
       </ScrollView>
   );
 }
+
+HomeScreen.navigationOptions = {
+  header: null,
+};

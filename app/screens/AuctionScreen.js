@@ -12,7 +12,7 @@ import {
 
 import styles from '../screens/Styles/Styles';
 
-export default function HomeScreen() {
+export default function AuctionScreen() {
   return (
     <View>
       <ScrollView style={styles.container}>
@@ -22,6 +22,6 @@ export default function HomeScreen() {
   );
 }
 
-HomeScreen.navigationOptions = {
+AuctionScreen.navigationOptions = {
   title: "Leilões",
 };

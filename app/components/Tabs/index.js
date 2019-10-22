@@ -8,12 +8,13 @@ import {
     ItemTitle, ItemDesc, ItemPrice } from '../../screens/Styles/TabStyles';
 
 import styles from '../../screens/Styles/Styles';
+import homeStyles from '../../screens/Styles/HomeStyles';
 
 export default function Tabs() {
     return(
         
-        <ScrollView style={{ marginBottom: 20 }}>
-            <View><Text style={styles.title}>Estão são as novidades</Text></View>
+        <ScrollView>
+            <View><Text style={homeStyles.title}>Estão são as novidades</Text></View>
 
             <View>
             <TabsContainer>

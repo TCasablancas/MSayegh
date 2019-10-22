@@ -2,14 +2,14 @@ import { StyleSheet, } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
+        paddingTop: 30,
         flex: 1,
         backgroundColor: '#f2f2f2',
         paddingHorizontal: 30,
       },
       mainView: {
-        marginBottom: 30,
+        
       },
-
       centered: {
         textAlign: "center",
       },
