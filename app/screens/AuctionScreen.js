@@ -10,15 +10,19 @@ import {
   View,
 } from 'react-native';
 
-import styles from '../screens/Styles/Styles';
+import styles from '../screens/Styles/HomeStyles';
+import TabStyles from '../screens/Styles/TabStyles';
+
+import Tabs from '../components/Tabs';
 
 export default function AuctionScreen() {
   return (
-    <View>
       <ScrollView style={styles.container}>
-        
+        <View>
+          <View><Text style={styles.title}>Nossos últimos leilões</Text></View>
+          <Tabs />
+        </View>
       </ScrollView>
-    </View>
   );
 }
 

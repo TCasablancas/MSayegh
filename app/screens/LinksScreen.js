@@ -12,7 +12,7 @@ export default function LinksScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <View><Text style={styles.title}>Nossos últimos leilões</Text></View>
+      <View><Text style={styles.title}>Últimos itens pesquisados</Text></View>
       <Tabs />
 
       <SearchBar
