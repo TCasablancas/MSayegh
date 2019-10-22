@@ -120,6 +120,13 @@ const styles = StyleSheet.create({
         height: 200,
         marginBottom: 20,
       },
+
+      containerData: {
+        padding: 20,
+        borderRadius: 6,
+        borderWidth: 2,
+        borderColor: '#999',
+      }
 });
 
 module.exports = styles;

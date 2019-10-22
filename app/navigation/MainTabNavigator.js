@@ -25,7 +25,7 @@ HomeStack.navigationOptions = {
   tabBarLabel: "Início",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon name="home" />
-  ),
+  )
 };
 HomeStack.path = '';
 
@@ -97,6 +97,7 @@ const tabNavigator = createBottomTabNavigator({
   tabBarOptions: {
     style: {
       backgroundColor: '#000',
+      activeTintColor: '#ff0'
     }
   }
 });
