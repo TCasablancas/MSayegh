@@ -9,7 +9,8 @@ import {
   View,
   Image, 
   Text,
-  SectionList
+  SectionList,
+  Button
 } from 'react-native';
 
 export default function ProfileScreen() {
@@ -97,6 +98,12 @@ export default function ProfileScreen() {
         />
 
         
+        </View>
+
+        <View style={{ flex: 1, padding: 15, marginBottom: 40 }}>
+          <Button title="FAZER LOGOUT"
+            style={ { fontSize: 20, padding: 15, borderWidth: 2, borderRadius: 6, color: '#888' }}
+          />
         </View>
     </ScrollView>
   )
