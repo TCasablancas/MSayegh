@@ -124,8 +124,15 @@ const styles = StyleSheet.create({
       containerData: {
         padding: 20,
         borderRadius: 6,
-        borderWidth: 2,
-        borderColor: '#999',
+        backgroundColor: '#fff',
+        shadowColor: '#c3c3c3',
+        shadowOffset: {
+          width: 0,
+          height: 10,
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 10,
+      elevation: 21
       }
 });
 

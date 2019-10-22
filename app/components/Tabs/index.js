@@ -14,8 +14,6 @@ export default function Tabs() {
     return(
         
         <ScrollView>
-            <View><Text style={homeStyles.title}>Estão são as novidades</Text></View>
-
             <View>
             <TabsContainer>
                 <TabItem>

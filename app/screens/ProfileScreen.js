@@ -81,7 +81,7 @@ export default function ProfileScreen() {
       <View style={ profileStyles.containerFlex }>
         <View style={ profileStyles.imageContainer }><Image source={{ uri: 'https://scontent.fcgh5-1.fna.fbcdn.net/v/t1.0-9/45340024_10216770067861560_1664954878432116736_n.jpg?_nc_cat=109&_nc_oc=AQnbpN8W7jPbFAaZYrWs72KJ4KbseCO22Sh0w0YGXr95b-ojf71detrkvOGKv18_lt4&_nc_ht=scontent.fcgh5-1.fna&oh=3298c34d6aa4cbccf327fe7e8df15325&oe=5E1E9C0E' }} /></View>
         <View style={ profileStyles.dataText }>
-          <Text style={ styles.title }>Thiago Augusto C. Silva</Text>
+          <Text style={ profileStyles.title }>Thiago Augusto C. Silva</Text>
           <Text style={ profileStyles.exText }>001.037.702-67</Text>
           <Text style={ profileStyles.exText }>5709591</Text>
         </View>
@@ -101,8 +101,14 @@ export default function ProfileScreen() {
         </View>
 
         <View style={{ flex: 1, padding: 15, marginBottom: 40 }}>
+          <Button title="TERMOS E CONDIÇÕES"
+            color="#000"
+          />
+          <Button title="POLÍTICA DE PRIVACIDADE"
+            color="#000"
+          />
           <Button title="FAZER LOGOUT"
-            style={ { fontSize: 20, padding: 15, borderWidth: 2, borderRadius: 6, color: '#888' }}
+            color="#f20"
           />
         </View>
     </ScrollView>
@@ -120,7 +126,7 @@ const ListHeader = () => {
 const SectionHeader = ({ title }) => {
   return (
     <View style={styles.sectionHeaderContainer}>
-      <Text style={{ fontSize: 14, marginBottom: 5, fontFamily: 'avenir-black' }}>{title}</Text>
+      <Text style={{ fontSize: 14, marginBottom: 5, fontFamily: 'avenir-black', color: '#777' }}>{title}</Text>
     </View>
   );
 };

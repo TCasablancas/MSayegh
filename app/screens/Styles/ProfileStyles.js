@@ -19,14 +19,27 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginBottom: 20,
       },
-
+      title: {
+        fontSize: 26,
+        fontFamily: 'avenir-black',
+        
+      },
       exText:{
         fontSize: 14,
         marginVertical: 0,
+        fontFamily: 'avenir-black',
+        color: '#777'
       },
       dataText: {
         
       },
+      btnAction: {
+        fontSize: 20, 
+        padding: 15, 
+        borderWidth: 2, 
+        borderRadius: 6, 
+        color: '#888',
+      }
 });
 
 module.exports = styles;

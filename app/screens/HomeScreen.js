@@ -28,6 +28,7 @@ export default function HomeScreen() {
           <View><Text style={homeStyles.title}>Olá Thiago, seja bem vindo.</Text></View>
             <View style={homeStyles.mainView}>
                 
+                <View><Text style={homeStyles.title}>Estão são as novidades</Text></View>
                 <Tabs />
                 
                 <View style={homeStyles.mainCard}>

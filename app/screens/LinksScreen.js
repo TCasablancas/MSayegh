@@ -1,32 +1,24 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { SearchBar } from 'react-native-elements'
 import { ExpoLinksView } from '@expo/samples';
 
 import styles from '../screens/Styles/HomeStyles';
+import TabStyles from '../screens/Styles/TabStyles';
+
+import Tabs from '../components/Tabs';
 
 export default function LinksScreen() {
 
-  state = {
-    search: '',
-  };
-
-  updateSearch = search => {
-    this.setState({ search });
-  };
-
-  const { search } = this.state;
-
   return (
-
-
-    
     <ScrollView style={styles.container}>
-      
+      <View><Text style={styles.title}>Nossos últimos leilões</Text></View>
+      <Tabs />
+
       <SearchBar
         placeholder="Type Here..."
         onChangeText={this.updateSearch}
-        value={search}
+        value=""
         placeholder="O que você procura?"
         style={{ color: '#fff' }}
       />
