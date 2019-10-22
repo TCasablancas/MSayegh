@@ -101,6 +101,7 @@ export default function ProfileScreen() {
         </View>
 
         <View style={{ flex: 1, padding: 15, marginBottom: 40 }}>
+          <Button title="EDITAR PERFIL" />
           <Button title="TERMOS E CONDIÇÕES"
             color="#000"
           />
