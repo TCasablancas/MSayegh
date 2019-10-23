@@ -14,6 +14,7 @@ import styles from '../screens/Styles/HomeStyles';
 import TabStyles from '../screens/Styles/TabStyles';
 
 import Tabs from '../components/Tabs';
+import ItemAuction from '../components/ItemAuction';
 
 export default function AuctionScreen() {
   return (
@@ -21,6 +22,10 @@ export default function AuctionScreen() {
         <View>
           <View><Text style={styles.title}>Nossos últimos leilões</Text></View>
           <Tabs />
+        </View>
+
+        <View>
+          <ItemAuction style={ styles.container } />
         </View>
       </ScrollView>
   );
