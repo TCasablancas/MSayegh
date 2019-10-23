@@ -1,14 +1,23 @@
-import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import React from 'react';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Button,
+    Alert,
+    AsyncStorage,
+} from 'react-native';
 
 import api from '../../services/api';
+import Main from '../../screens/HomeScreen';
 
 export default function Login() {
-//   state = { email: '', password: '', errorMessage: null }
-//   handleLogin = () => {
-//     // TODO: Firebase stuff...
-//     console.log('handleLogin')
-//   }
+
+    state = {
+        id_erro: null,
+        erro: 'falha ao autenticar API',
+        dados: [],
+    };
 
     signIn = async () => {
         try {
@@ -28,39 +37,28 @@ export default function Login() {
 
         Alert.alert('Logado com sucesso!');
         } catch (err) {
-        this.setState({ errorMessage: err.data.error });
+        this.setState({ erro: err.data.error });
         }
     };
 
+    // void componentDidMount() {
+    //     await AsyncStorage.clear();
+
+    //     const token = await AsyncStorage.getItem('@CodeApi:token');
+    //     const user = JSON.parse(await AsyncStorage.getItem('@CodeApi:user')) || null;
+
+    //     if (token && user) 
+    //         this.setState({ loggedInUser: user });
+    // }
+
     return (
-      <View style={styles.container}>
-        <Text>Login</Text>
-        {this.state.errorMessage &&
-          <Text style={{ color: 'red' }}>
-            {this.state.errorMessage}
-          </Text>}
-        <TextInput
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Email"
-          //onChangeText={email => this.setState({ email })}
-          //value={this.state.email}
-        />
-        <TextInput
-          secureTextEntry
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Password"
-          //onChangeText={password => this.setState({ password })}
-          //value={this.state.password}
-        />
-        <Button title="Login" onPress={this.handleLogin} />
-        <Button
-          title="Don't have an account? Sign Up"
-          //onPress={() => this.props.navigation.navigate('SignUp')}
-        />
-      </View>
-    )
+        <View style={styles.container}>
+          { !!this.state.erro && <Text>{this.state.erro}</Text> }
+          { this.state.loggedInUser
+            ? this.props.navigation.navigate('Main')
+            : <Button onPress={this.signIn} title="Entrar" /> }
+        </View>
+      );
 }
 const styles = StyleSheet.create({
   container: {
