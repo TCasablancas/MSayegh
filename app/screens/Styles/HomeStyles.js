@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
       },
 
       mainCard: {
-        backgroundColor: '#9f9f9f',
+        backgroundColor: '#000',
         height: 300,
         marginTop: 30,
         marginBottom: 20,
@@ -108,14 +108,19 @@ const styles = StyleSheet.create({
         fontFamily: 'avenir-roman',
         textAlign: "center",
         marginVertical: 20,
+        color: '#fff', 
       },
       callMainCard: {
         fontFamily: 'avenir-black',
         textAlign: "center",
         marginBottom: 20,
-        fontSize: 20,
+        fontSize: 26,
+        color: '#fff',
       },
-
+      mainImage: {
+        flex: 1,
+        height: 300,
+      },
       shelfContainer: {
         height: 200,
         marginBottom: 20,

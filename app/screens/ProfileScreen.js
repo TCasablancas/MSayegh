@@ -3,6 +3,8 @@ import { ExpoConfigView } from '@expo/samples';
 
 import styles from './Styles/HomeStyles';
 import profileStyles from './Styles/ProfileStyles';
+import Pic from '../assets/images/45340024_10216770067861560_1664954878432116736_n.jpg'
+
 import { 
   ScrollView, 
   View,
@@ -14,6 +16,7 @@ import {
 } from 'react-native';
 
 export default function ProfileScreen() {
+
   const dados = [
     {
       name: 'Rua Reims, 120 - Ap 21',
@@ -41,7 +44,9 @@ export default function ProfileScreen() {
   return (
     <ScrollView style={ profileStyles.container }>
       <View style={ profileStyles.containerFlex }>
-        <View style={ profileStyles.imageContainer }><Image source={{ uri: 'https://scontent.fcgh5-1.fna.fbcdn.net/v/t1.0-9/45340024_10216770067861560_1664954878432116736_n.jpg?_nc_cat=109&_nc_oc=AQnbpN8W7jPbFAaZYrWs72KJ4KbseCO22Sh0w0YGXr95b-ojf71detrkvOGKv18_lt4&_nc_ht=scontent.fcgh5-1.fna&oh=3298c34d6aa4cbccf327fe7e8df15325&oe=5E1E9C0E' }} /></View>
+        <View style={ profileStyles.imageContainer }>
+          <Image source={ Pic } style={ profileStyles.picture } />
+          </View>
         <View style={ profileStyles.dataText }>
           <Text style={ profileStyles.title }>Thiago Augusto C. Silva</Text>
           <Text style={ profileStyles.exText }>001.037.702-67</Text>

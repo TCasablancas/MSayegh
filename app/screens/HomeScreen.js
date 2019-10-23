@@ -21,6 +21,8 @@ import homeStyles from '../screens/Styles/HomeStyles';
 import Tabs from '../components/Tabs';
 import TabStyles from '../screens/Styles/TabStyles';
 
+import Ring from '../assets/images/ring.png';
+
 export default function HomeScreen() {
   return (
       <ScrollView>
@@ -33,7 +35,8 @@ export default function HomeScreen() {
                 
                 <View style={homeStyles.mainCard}>
                     <Text style={homeStyles.textMainCard}>Próximo Leilão</Text>
-                    <Text style={homeStyles.callMainCard}>32º Leilão de Joias</Text> 
+                    <Text style={homeStyles.callMainCard}>32º Leilão de Joias</Text>
+                    <Image sourc={ Ring } style={ homeStyles.mainImage } /> 
                 </View>
                 
                 <View>

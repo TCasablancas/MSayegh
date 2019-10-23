@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#f00',
         marginRight: 20,
         marginBottom: 20,
+        overflow: "hidden",
+      },
+      picture: {
+        width: 60,
+        height: 60,
       },
       title: {
         fontSize: 26,
@@ -31,10 +36,10 @@ const styles = StyleSheet.create({
         color: '#777'
       },
       dataText: {
-        fontSize: 20,
+        fontSize: 23,
         fontFamily: 'avenir-roman',
-        marginBottom: 15
-
+        marginBottom: 15,
+        marginTop: 5,
       },
       btnAction: {
         fontSize: 20, 
