@@ -10,6 +10,8 @@ import Logo from './assets/images/miltonSayegh.png';
 
 import AppNavigator from './navigation/AppNavigator';
 
+import Login from './screens/Login';
+
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
@@ -27,6 +29,8 @@ export default function App(props) {
         <StatusBar 
           barStyle="light-content"
           />
+
+      {/* <Login /> */}
 
       <Header 
         centerComponent={ <Image source={ Logo } /> }
