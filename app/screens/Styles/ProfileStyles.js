@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
         color: '#777'
       },
       dataText: {
-        
+        fontSize: 20,
+        fontFamily: 'avenir-roman',
+        marginBottom: 15
+
       },
       btnAction: {
         fontSize: 20, 

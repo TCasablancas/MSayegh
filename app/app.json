@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Milton Sayegh",
-    "slug": "Milton Sayegh",
+    "name": "MiltonSayegh",
+    "slug": "MiltonSayegh",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -10,12 +10,13 @@
       "web"
     ],
     "version": "1.0.0",
+    "primaryColor": "#000",
     "orientation": "portrait",
     "icon": "./assets/images/logo_icon.png",
     "splash": {
       "image": "./assets/images/Logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
