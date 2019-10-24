@@ -5,15 +5,25 @@ import React, { useState } from 'react';
 import { Platform, Image, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import ApiKeys from './services/ApiKeys';
+import * as firebase from 'firebase';
+//import * as firebase from 'firebase/analytics';
+
 import { Header, headerTitle, headerRight } from 'react-native-elements';
 import Logo from './assets/images/miltonSayegh.png';
 
 import AppNavigator from './navigation/AppNavigator';
 
-import Login from './screens/Login';
+import Login from './screens/Login/';
 
 export default function App(props) {
+
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+
+  if (!firebase.apps.length) { 
+    firebase.initializeApp(ApiKeys.FirebaseConfig); 
+    //firebase.analytics();
+  }
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -30,14 +40,14 @@ export default function App(props) {
           barStyle="light-content"
           />
 
-      {/* <Login /> */}
+      <Login />
 
-      <Header 
+      {/* <Header 
         centerComponent={ <Image source={ Logo } /> }
         backgroundColor= "#000"
       />
       
-      <AppNavigator />
+      <AppNavigator /> */}
       </View>
     );
   }

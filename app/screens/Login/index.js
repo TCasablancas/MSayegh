@@ -3,74 +3,68 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
+    TouchableOpacity,
     Alert,
     AsyncStorage,
 } from 'react-native';
 
+import styles from './styles';
+
 import api from '../../services/api';
 import Main from '../../screens/HomeScreen';
+import { TextInput } from 'react-native-gesture-handler';
 
 export default function Login() {
 
     state = {
-        id_erro: null,
-        erro: 'falha ao autenticar API',
-        dados: [],
+        errorMessage: null,
     };
 
     signIn = async () => {
         try {
-        const response = await api.post('/auth', {
-            email: 'andre@prism.com.br',
-            password: '123mudar',
-        });
-
-        const { token, user } = response.data;
-
-        await AsyncStorage.multiSet([
-            ['@CodeApi:token', token],
-            ['@CodeApi:user', JSON.stringify(user)],
-        ]);
-
-        this.setState({ loggedInUser: user });
-
-        Alert.alert('Logado com sucesso!');
-        } catch (err) {
-        this.setState({ erro: err.data.error });
+            const response = await api.post('/login', {
+                email: '',
+                password: '',
+            });
+    
+            const { users, token } = response.dados;
+    
+            await AsyncStorage.multiSet([
+                ['@sayegh:token', token],
+                ['@sayegh:user', JSON.stringify(user)],
+            ]);
+        } catch (response) {
+            this.setState({ errorMessage: response.erro })
         }
     };
 
-    // void componentDidMount() {
-    //     await AsyncStorage.clear();
-
-    //     const token = await AsyncStorage.getItem('@CodeApi:token');
-    //     const user = JSON.parse(await AsyncStorage.getItem('@CodeApi:user')) || null;
-
-    //     if (token && user) 
-    //         this.setState({ loggedInUser: user });
-    // }
-
     return (
         <View style={styles.container}>
-          { !!this.state.erro && <Text>{this.state.erro}</Text> }
-          { this.state.loggedInUser
-            ? this.props.navigation.navigate('Main')
-            : <Button onPress={this.signIn} title="Entrar" /> }
+
+            { this.state.errorMessage && <Text style={{color: '#fff', fontSize: 22}}>{ this.state.errorMessage }</Text> }
+
+            <View>
+                <Text style={ styles.title }>usuário</Text>
+                <TextInput placeholder="digite seu nome de usuário" placeholderTextColor="#666" style={ styles.input } />
+            </View>
+
+            <View>
+                <Text style={ styles.title }>senha</Text>
+                <TextInput placeholder="digite sua senha" secureTextEntry={true} placeholderTextColor="#666" style={ styles.input } />
+            </View>
+
+            <View>
+                <TouchableOpacity style={ styles.btnLogin } onPress={this.signIn}>
+                    <Text style={ styles.btnText }>entrar</Text>
+                </TouchableOpacity>
+            </View>
+
+            <View>
+                <Text>Ainda não é cadastrado?</Text>
+                <TouchableOpacity style={ styles.btnLogin } onPress={this.signIn}>
+                    <Text style={ styles.btnText }>cadastrar agora</Text>
+                </TouchableOpacity>
+            </View>
         </View>
       );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  textInput: {
-    height: 40,
-    width: '90%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
-  }
-})
