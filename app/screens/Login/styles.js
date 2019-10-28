@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     input: {
         color: '#fff',
-        fontSize: 24,
+        fontSize: 20,
         fontFamily: 'avenir-roman',
         borderBottomColor: '#fff',
         borderBottomWidth: 2,
@@ -21,25 +21,44 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     btnText: {
-        fontSize: 24,
+        fontSize: 20,
         color: '#000',
         fontFamily: 'avenir-black',
         textAlign: "center",
     },
     btnSignup: {
         backgroundColor: '#000',
-        marginTop: 30,
-        padding: 20,
+        marginTop: 0,
+        paddingVertical: 13,
         borderRadius: 6,
         borderWidth: 2,
         borderColor: '#fff',
+
+    },
+    btnSignupText: {
+        color: '#fff',
+        textAlign: "center",
+        fontSize: 20,
+        fontFamily: 'avenir-roman',
     },
     btnLogin: {
         backgroundColor: '#fff',
         marginTop: 30,
-        padding: 20,
+        paddingVertical: 13,
         borderRadius: 6,
-    }
+        marginBottom: 20,
+    },
+    darkLabel: {
+        color: '#fff',
+        fontFamily: 'avenir-black',
+        height: 30,
+    },
+    darkLabelCenter: {
+        color: '#fff',
+        fontFamily: 'avenir-black',
+        height: 30,
+        textAlign: "center",
+    },
 });
 
 module.exports = styles;
