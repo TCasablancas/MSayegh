@@ -1,7 +1,7 @@
 import { create } from 'apisauce';
 
 const api = create({
-    baseURL: 'https://www.sayeghtv.com.br/_api',
+    baseURL: 'https://msayegh-30d8d.firebaseio.com',
 });
 
 api.addResponseTransform(response => {

@@ -26,6 +26,14 @@ const styles = StyleSheet.create({
         fontFamily: 'avenir-black',
         textAlign: "center",
     },
+    btnSignup: {
+        backgroundColor: '#000',
+        marginTop: 30,
+        padding: 20,
+        borderRadius: 6,
+        borderWidth: 2,
+        borderColor: '#fff',
+    },
     btnLogin: {
         backgroundColor: '#fff',
         marginTop: 30,

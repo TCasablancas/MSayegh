@@ -14,28 +14,33 @@ import api from '../../services/api';
 import Main from '../../screens/HomeScreen';
 import { TextInput } from 'react-native-gesture-handler';
 
+import firebase from 'firebase'
+import '@firebase/firestore';
+
+
+function onLoginPress() {
+
+    this.state({ error:'', loading: true });
+
+    const{email, password} = this.state;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+        this.state({ error:'', loading: false })
+        this.props.navigation.navigate('Main')
+    })
+    .catch(() => {
+        this.state({ error: 'Tivemos um problema com o login', loading: false });
+    })
+}
+
 export default function Login() {
-
-    state = {
-        errorMessage: null,
-    };
-
-    signIn = async () => {
-        try {
-            const response = await api.post('/login', {
-                email: '',
-                password: '',
-            });
     
-            const { users, token } = response.dados;
-    
-            await AsyncStorage.multiSet([
-                ['@sayegh:token', token],
-                ['@sayegh:user', JSON.stringify(user)],
-            ]);
-        } catch (response) {
-            this.setState({ errorMessage: response.erro })
-        }
+    this.state = {
+        email: '',
+        password: '',
+        error: '', 
+        loading: false,
     };
 
     return (
@@ -61,7 +66,7 @@ export default function Login() {
 
             <View>
                 <Text>Ainda não é cadastrado?</Text>
-                <TouchableOpacity style={ styles.btnLogin } onPress={this.signIn}>
+                <TouchableOpacity style={ styles.btnLogin } onPress={this.onLoginPress}>
                     <Text style={ styles.btnText }>cadastrar agora</Text>
                 </TouchableOpacity>
             </View>

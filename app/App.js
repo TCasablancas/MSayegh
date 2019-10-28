@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import { Platform, Image, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+
 import ApiKeys from './services/ApiKeys';
 import * as firebase from 'firebase';
 //import * as firebase from 'firebase/analytics';
@@ -12,13 +14,17 @@ import * as firebase from 'firebase';
 import { Header, headerTitle, headerRight } from 'react-native-elements';
 import Logo from './assets/images/miltonSayegh.png';
 
-import AppNavigator from './navigation/AppNavigator';
+//import AppNavigator from './navigation/AppNavigator';
 
+import Loading from './screens/LoadingScreen';
 import Login from './screens/Login/';
+import Main from './screens/HomeScreen';
 
 export default function App(props) {
 
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+
+  
 
   if (!firebase.apps.length) { 
     firebase.initializeApp(ApiKeys.FirebaseConfig); 
@@ -52,6 +58,14 @@ export default function App(props) {
     );
   }
 }
+
+const AppSwitchNavigator = createSwitchNavigator({
+    LoadingScreen: Loading,
+    LoginScree: Login,
+    MainScreen: Main,
+})
+
+const AppNavigator = createAppContainer(AppSwitchNavigator);
 
 async function loadResourcesAsync() {
   await Promise.all([
