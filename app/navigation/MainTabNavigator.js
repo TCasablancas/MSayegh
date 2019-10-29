@@ -9,29 +9,33 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AuctionScreen from '../screens/AuctionScreen';
-
-const HomeStack = createStackNavigator(
-  { Login: Login, }
-);
+import HomeScreen from '../screens/HomeScreen';
 
 Login.navigationOptions = {
   header: null,
+  //tabBarVisible: false,
 }
 Login.path = '';
 
+const HomeStack = createStackNavigator(
+  { Home: HomeScreen, }
+);
+HomeScreen.navigationOptions = {
+  tabBarVisible: true,
+  header: null,
+}
 HomeStack.navigationOptions = {
   tabBarLabel: "Início",
   tabBarIcon: ({ focused }) => (
     activeTintColor='#000',
     <TabBarIcon name="home" />
-  )
+  ),
 };
 HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   { Links: LinksScreen, },
 );
-
 LinksStack.navigationOptions = {
   tabBarLabel: 'Buscar',
   tabBarIcon: ({ focused }) => (
@@ -45,7 +49,6 @@ const AuctionStack = createStackNavigator(
     Settings: AuctionScreen,
   },
 );
-
 AuctionStack.navigationOptions = {
   tabBarLabel: 'Leilões',
   tabBarIcon: ({ focused }) => (
@@ -59,7 +62,6 @@ const SettingsStack = createStackNavigator(
     Settings: SettingsScreen,
   },
 );
-
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Favoritos',
   tabBarIcon: ({ focused }) => (
@@ -73,7 +75,6 @@ const ProfileStack = createStackNavigator(
     Settings: ProfileScreen,
   },
 );
-
 ProfileStack.navigationOptions = {
   tabBarLabel: 'Perfil',
   tabBarIcon: ({ focused }) => (
@@ -83,6 +84,7 @@ ProfileStack.navigationOptions = {
 ProfileStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
+  Login,
   HomeStack,
   LinksStack,
   AuctionStack,
@@ -95,7 +97,9 @@ const tabNavigator = createBottomTabNavigator({
       tintColor: '#fff',
     }
   },
-  activeTintColor: '#f0edf6'
+  activeTintColor: '#f0edf6',
+  animationEnabled: true,
+  swipeEnabled: true,
 });
 
 tabNavigator.path = '';

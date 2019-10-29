@@ -21,10 +21,7 @@ import Login from './screens/Login/';
 import Main from './screens/HomeScreen';
 
 export default function App(props) {
-
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-
-  
 
   if (!firebase.apps.length) { 
     firebase.initializeApp(ApiKeys.FirebaseConfig); 

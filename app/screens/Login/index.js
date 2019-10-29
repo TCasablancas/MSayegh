@@ -217,10 +217,10 @@ class SignUp extends React.Component {
     }
 }
 
-const RootStack = createStackNavigator({
+const RootStack = createSwitchNavigator({
     Login: Login,
     SignUp: SignUp,
-    HomeScreen: HomeScreen,
+    HomeScreen: { screen: HomeScreen },
 }, {
     initialRouteName: 'Login',
 });

@@ -1,5 +1,9 @@
 import { Header } from 'react-native-elements';
 import Logo from './../assets/images/miltonSayegh.png';
+import ApiKeys from './../services/ApiKeys';
+import * as firebase from 'firebase';
+
+import PropTypes from 'prop-types';
 
 import React from 'react';
 import {
@@ -30,8 +34,12 @@ class AuctionScreen extends React.Component {
     };
   }
 
+  static propTypes = {
+    items: PropTypes.array.isRequired
+  };
+
   componentDidMount(){
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("https://msayegh-30d8d.firebaseio.com")
     .then(response => response.json())
     .then((responseJson)=> {
       this.setState({
@@ -39,20 +47,32 @@ class AuctionScreen extends React.Component {
         dataSource: responseJson
       })
     })
-    .catch(error=>console.log(error)) //to catch the errors if any
+    .catch(error=>console.log(error))
+  }
+
+  readUserData() {
+    firebase.database().ref('/ms_leiloes/0/cidade').once('value', function (snapshot) {
+        console.log(snapshot.val())
+    });
   }
 
   render() {
 
-    if(this.state.loading){
-    return (
-      <View style={styles.loader}> 
-        <ActivityIndicator size="large" color="#000" centerComponent/>
-      </View>
-    )}
+    // if(this.state.loading){
+    // return (
+    //   <View style={styles.loader}> 
+    //     <ActivityIndicator size="large" color="#000" centerComponent/>
+    //   </View>
+    // )}
+
+    if (!firebase.apps.length) { 
+      firebase.initializeApp(ApiKeys.FirebaseConfig);
+    }
+
     return (
       <>
-      
+        
+
         <Header 
           centerComponent={ <Image source={ Logo } /> }
           backgroundColor= "#000"
@@ -75,7 +95,7 @@ class AuctionScreen extends React.Component {
               renderItem= {item=> this.renderItem(item)}
               keyExtractor= {item=>item.id.toString()}
           />
-
+        
         </ScrollView>
       </>
     );
@@ -83,9 +103,10 @@ class AuctionScreen extends React.Component {
 
   renderItem = (data) =>
   <TouchableOpacity style={styles.list}>
-  <Text style={styles.lightText}>{data.item.name}</Text>
-  <Text style={styles.lightText}>{data.item.email}</Text>
-  <Text style={styles.lightText}>{data.item.company.name}</Text></TouchableOpacity>
+    <Text style={styles.lightText}>{data.item.cidade}</Text>
+    {/* <Text style={styles.lightText}>{data.item.email}</Text>
+    <Text style={styles.lightText}>{data.item.company.name}</Text> */}
+  </TouchableOpacity>
 }
 
 AuctionScreen.navigationOptions = {
