@@ -11,33 +11,58 @@ import {
 import styles from './styles';
 
 import api from '../../services/api';
-import Main from '../../screens/HomeScreen';
+import Main from '../HomeScreen';
+import Profile from './../ProfileScreen';
+
 import { TextInput } from 'react-native-gesture-handler';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, createAppContainer  } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import firebase from 'firebase'
 import '@firebase/firestore';
 
 export default class Login extends React.Component {
 
-    constructor(props) {
-        super(props);
-            this.state = {
-                email: "",
-                password: ""
-        };
-    }
+    state = {
+        email: '',
+        password: '',
+        isAuth: false,
+    };
 
-    SignIn = (email, password) => {
+    loogin = async () => {
+        const  { email, password } = this.state;
+
         try {
-          firebase.auth().signInWithEmailAndPassword(email, password);
-          firebase.auth().onAuthStateChanged(user => {
-             this.props.navigation.navigate('Main');
-          })
-    } catch (error) {
-            console.log(error.toString(error));
+            const user = await firebase.auth()
+                .signInWithEmailAndPassword(email, password);
+
+            this.state({ isAuth: true });
+            this.props.navigation.navigate('Main');
+            console.log(user);
+        } catch (err){
+            console.log(err);
         }
     };
+
+    // constructor(props) {
+    //     super(props);
+    //         this.state = {
+    //             email: "",
+    //             password: ""
+    //     };
+    // }
+
+    // SignIn = (email, password, navigate) => {
+    //     try {
+    //       firebase.auth().signInWithEmailAndPassword(email, password)
+    //       firebase.auth().onAuthStateChanged(user => {
+    //         console.log(email);
+    //         this.props.navigation.navigate('Main')
+    //       })
+    // } catch (error) {
+    //         console.log(error.toString(error));
+    //     }
+    // };
 
     render() {
         return (
@@ -54,6 +79,7 @@ export default class Login extends React.Component {
                         autoCapitalize="none"
                         autoCorrect={false}
                         onChangeText={email => this.setState({ email })}
+                        value={this.state.email}
                     />
                 </View>
 
@@ -67,11 +93,14 @@ export default class Login extends React.Component {
                         autoCapitalize="none"
                         autoCorrect={false}
                         onChangeText={password => this.setState({ password })}    
+                        value={ this.state.password }
                     />
                 </View>
 
                 <View>
-                    <TouchableOpacity style={ styles.btnLogin } onPress={() => this.SignIn(this.state.email, this.state.password)}>
+                    <TouchableOpacity 
+                        style={ styles.btnLogin } 
+                        onPress={ this.login  }>
                         <Text style={ styles.btnText }>entrar</Text>
                     </TouchableOpacity>
                 </View>

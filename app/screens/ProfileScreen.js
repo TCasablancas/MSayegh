@@ -50,7 +50,7 @@ export default function ProfileScreen() {
         <View style={ profileStyles.dataText }>
           <Text style={ profileStyles.title }>Thiago Augusto C. Silva</Text>
           <Text style={ profileStyles.exText }>001.037.702-67</Text>
-          <Text style={ profileStyles.exText }>5709591</Text>
+          <Text style={ profileStyles.exText }>59.335.983-5</Text>
         </View>
       </View>
 

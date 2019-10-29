@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
       mainCard: {
         backgroundColor: '#000',
         height: 300,
-        marginTop: 30,
+        marginTop: 0,
         marginBottom: 20,
         borderRadius: 6,
       },

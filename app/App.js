@@ -47,13 +47,8 @@ export default function App(props) {
           />
 
       <Login />
-
-      {/* <Header 
-        centerComponent={ <Image source={ Logo } /> }
-        backgroundColor= "#000"
-      />
       
-      <AppNavigator /> */}
+      {/* <AppNavigator /> */}
       </View>
     );
   }

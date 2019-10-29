@@ -13,18 +13,26 @@ import {
 
 import { 
   Shelf, ItemShelf, ItemImage,
-  ItemTitle, ItemDesc, ItemPrice } from '../screens/Styles/MainStyles';
+  ItemTitle, ItemDesc, ItemPrice } from './Styles/MainStyles';
 
-import styles from '../screens/Styles/Styles';
-import mainStyles from '../screens/Styles/MainStyles';
-import homeStyles from '../screens/Styles/HomeStyles';
+import styles from './Styles/Styles';
+import mainStyles from './Styles/MainStyles';
+import homeStyles from './Styles/HomeStyles';
 import Tabs from '../components/Tabs';
-import TabStyles from '../screens/Styles/TabStyles';
+import TabStyles from './Styles/TabStyles';
 
-import Ring from '../assets/images/ring.png';
+import Logo from './../assets/images/miltonSayegh.png';
+import Ring from './../assets/images/ring.png';
 
 export default function HomeScreen() {
   return (
+
+      <>
+      <Header 
+        centerComponent={ <Image source={ Logo } /> }
+        backgroundColor= "#000"
+      />
+      
       <ScrollView>
         <View style={ homeStyles.container }>
           <View><Text style={homeStyles.title}>Olá Thiago, seja bem vindo.</Text></View>
@@ -36,7 +44,7 @@ export default function HomeScreen() {
                 <View style={homeStyles.mainCard}>
                     <Text style={homeStyles.textMainCard}>Próximo Leilão</Text>
                     <Text style={homeStyles.callMainCard}>32º Leilão de Joias</Text>
-                    <Image sourc={ Ring } style={ homeStyles.mainImage } /> 
+                    <Image source={ Ring } style={ homeStyles.mainImage } /> 
                 </View>
                 
                 <View>
@@ -64,6 +72,7 @@ export default function HomeScreen() {
             </View>
           </View>
       </ScrollView>
+      </>
   );
 }
 

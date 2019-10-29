@@ -9,7 +9,8 @@ export const Container = styled.View`
 export const TabsContainer = styled.ScrollView.attrs({
     horizontal: true,
     contentContainerStyle: { paddingLeft: 0, paddingRight: 10 },
-    showHorizontalScrollIndicator: false, 
+    showHorizontalScrollIndicator: false,
+    marginBottom: 20,
 })``;
 
 export const TabItem = styled.View`

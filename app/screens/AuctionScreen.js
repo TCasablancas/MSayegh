@@ -25,6 +25,7 @@ export default function AuctionScreen() {
         </View>
 
         <View>
+          <View><Text style={styles.title}>Leilões ativos</Text></View>
           <ItemAuction style={ styles.container } />
         </View>
       </ScrollView>
