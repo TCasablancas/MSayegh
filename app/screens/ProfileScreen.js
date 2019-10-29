@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
+import { Header } from 'react-native-elements'
 
 import styles from './Styles/HomeStyles';
 import profileStyles from './Styles/ProfileStyles';
@@ -14,6 +15,8 @@ import {
   Button, 
   FlatList
 } from 'react-native';
+
+import Logo from './../assets/images/miltonSayegh.png';
 
 export default function ProfileScreen() {
 
@@ -42,44 +45,50 @@ export default function ProfileScreen() {
 
     
   return (
-    <ScrollView style={ profileStyles.container }>
-      <View style={ profileStyles.containerFlex }>
-        <View style={ profileStyles.imageContainer }>
-          <Image source={ Pic } style={ profileStyles.picture } />
-          </View>
-        <View style={ profileStyles.dataText }>
-          <Text style={ profileStyles.title }>Thiago Augusto C. Silva</Text>
-          <Text style={ profileStyles.exText }>001.037.702-67</Text>
-          <Text style={ profileStyles.exText }>59.335.983-5</Text>
-        </View>
-      </View>
-
-      <View style={ styles.containerData }> 
-      <FlatList
-        data={ dados }
-        numColumns={ 1 }
-        renderItem={ ({ item }) => 
-          <View>
-            <Text style={ profileStyles.exText }>{ item.title }</Text>
-            <Text style={ profileStyles.dataText }>{ item.name }</Text>
-          </View> } 
+    <>
+      <Header 
+        centerComponent={ <Image source={ Logo } /> }
+        backgroundColor= "#000"
       />
-      
-      </View>
+      <ScrollView style={ profileStyles.container }>
+        <View style={ profileStyles.containerFlex }>
+          <View style={ profileStyles.imageContainer }>
+            <Image source={ Pic } style={ profileStyles.picture } />
+            </View>
+          <View style={ profileStyles.dataText }>
+            <Text style={ profileStyles.title }>Thiago Augusto C. Silva</Text>
+            <Text style={ profileStyles.exText }>001.037.702-67</Text>
+            <Text style={ profileStyles.exText }>59.335.983-5</Text>
+          </View>
+        </View>
 
-      <View style={{ flex: 1, padding: 15, marginBottom: 40 }}>
-        <Button title="EDITAR PERFIL" />
-        <Button title="TERMOS E CONDIÇÕES"
-          color="#000"
+        <View style={ styles.containerData }> 
+        <FlatList
+          data={ dados }
+          numColumns={ 1 }
+          renderItem={ ({ item }) => 
+            <View>
+              <Text style={ profileStyles.exText }>{ item.title }</Text>
+              <Text style={ profileStyles.dataText }>{ item.name }</Text>
+            </View> } 
         />
-        <Button title="POLÍTICA DE PRIVACIDADE"
-          color="#000"
-        />
-        <Button title="FAZER LOGOUT"
-          color="#f20"
-        />
-      </View>
-    </ScrollView>
+        
+        </View>
+
+        <View style={{ flex: 1, padding: 15, marginBottom: 40 }}>
+          <Button title="EDITAR PERFIL" />
+          <Button title="TERMOS E CONDIÇÕES"
+            color="#000"
+          />
+          <Button title="POLÍTICA DE PRIVACIDADE"
+            color="#000"
+          />
+          <Button title="FAZER LOGOUT"
+            color="#f20"
+          />
+        </View>
+      </ScrollView>
+    </>
   )
 }
 

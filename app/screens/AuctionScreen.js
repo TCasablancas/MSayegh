@@ -1,4 +1,6 @@
-import * as WebBrowser from 'expo-web-browser';
+import { Header } from 'react-native-elements';
+import Logo from './../assets/images/miltonSayegh.png';
+
 import React from 'react';
 import {
   Image,
@@ -18,6 +20,12 @@ import ItemAuction from '../components/ItemAuction';
 
 export default function AuctionScreen() {
   return (
+    <>
+      <Header 
+        centerComponent={ <Image source={ Logo } /> }
+        backgroundColor= "#000"
+      />
+      
       <ScrollView style={styles.container}>
         <View>
           <View><Text style={styles.title}>Nossos últimos leilões</Text></View>
@@ -29,6 +37,7 @@ export default function AuctionScreen() {
           <ItemAuction style={ styles.container } />
         </View>
       </ScrollView>
+    </>
   );
 }
 

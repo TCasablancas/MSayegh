@@ -14,7 +14,7 @@ import * as firebase from 'firebase';
 import { Header, headerTitle, headerRight } from 'react-native-elements';
 import Logo from './assets/images/miltonSayegh.png';
 
-//import AppNavigator from './navigation/AppNavigator';
+import AppNavigator from './navigation/AppNavigator';
 
 import Loading from './screens/LoadingScreen';
 import Login from './screens/Login/';
@@ -45,22 +45,20 @@ export default function App(props) {
         <StatusBar 
           barStyle="light-content"
           />
-
-      <Login />
       
-      {/* <AppNavigator /> */}
+      <AppNavigator />
       </View>
     );
   }
 }
 
-const AppSwitchNavigator = createSwitchNavigator({
-    LoadingScreen: Loading,
-    LoginScree: Login,
-    MainScreen: Main,
-})
+// const AppSwitchNavigator = createSwitchNavigator({
+//     LoadingScreen: Loading,
+//     LoginScree: Login,
+//     MainScreen: Main,
+// })
 
-const AppNavigator = createAppContainer(AppSwitchNavigator);
+// const AppNavigator = createAppContainer(AppSwitchNavigator);
 
 async function loadResourcesAsync() {
   await Promise.all([

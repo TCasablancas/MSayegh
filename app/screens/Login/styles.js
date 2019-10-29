@@ -3,13 +3,30 @@ import { StyleSheet, } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 60,
-        marginTop: 300,
+        paddingHorizontal: 30,
+        paddingTop: 60,
+        backgroundColor: '#000',
+    },
+    headerTitle: {
+        color: '#fff',
+        fontSize: 22,
+        fontFamily: 'avenir-black'
     },
     title: {
         color: '#fff',
         fontSize: 14,
         fontFamily: 'avenir-black',
+    },
+    boxMainDesc: {
+        marginVertical: 20, 
+        paddingTop: 15, 
+        borderTopColor: '#fff',
+        borderTopWidth: 2,
+    },
+    mainDesc: {
+        color: '#fff',
+        fontFamily: 'avenir-roman',
+        fontSize: 26,
     },
     input: {
         color: '#fff',
@@ -58,6 +75,13 @@ const styles = StyleSheet.create({
         fontFamily: 'avenir-black',
         height: 30,
         textAlign: "center",
+    },
+    backButton: {
+        fontSize: 16,
+        color: '#fff',
+        position: "relative",
+        fontFamily: 'avenir-black',
+        marginVertical: 10,
     },
 });
 

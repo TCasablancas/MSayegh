@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
       mainView: {
         
       },
+      mainViewImage: {
+        height: 200
+      },
       centered: {
         textAlign: "center",
       },
@@ -103,6 +106,8 @@ const styles = StyleSheet.create({
         marginTop: 0,
         marginBottom: 20,
         borderRadius: 6,
+        justifyContent: 'center',
+        alignItems: 'center',
       },
       textMainCard: {
         fontFamily: 'avenir-roman',
@@ -118,8 +123,8 @@ const styles = StyleSheet.create({
         color: '#fff',
       },
       mainImage: {
-        flex: 1,
-        height: 300,
+        height: 150,
+        width: 150,
       },
       shelfContainer: {
         height: 200,

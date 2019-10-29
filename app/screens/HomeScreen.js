@@ -15,8 +15,6 @@ import {
   Shelf, ItemShelf, ItemImage,
   ItemTitle, ItemDesc, ItemPrice } from './Styles/MainStyles';
 
-import styles from './Styles/Styles';
-import mainStyles from './Styles/MainStyles';
 import homeStyles from './Styles/HomeStyles';
 import Tabs from '../components/Tabs';
 import TabStyles from './Styles/TabStyles';
@@ -25,6 +23,7 @@ import Logo from './../assets/images/miltonSayegh.png';
 import Ring from './../assets/images/ring.png';
 
 export default function HomeScreen() {
+
   return (
 
       <>
@@ -52,7 +51,9 @@ export default function HomeScreen() {
                         <Shelf>
                         <ItemShelf>
                             <ItemImage 
-                                source={{uri: 'https://www.sayeghtv.com.br/util/content/b44f6d75d6611bbdb6cd3934adfe1283.jpg'}} />
+                                source={{uri: 'https://www.sayeghtv.com.br/util/content/b44f6d75d6611bbdb6cd3934adfe1283.jpg'}} 
+                                
+                                />
                             <View>
                                 <Text style={ItemTitle.font}>TENDÊNCIA</Text>
                                 <Text style={ItemDesc.font}>Colar de Diamante Swarovski</Text>
@@ -72,6 +73,7 @@ export default function HomeScreen() {
             </View>
           </View>
       </ScrollView>
+
       </>
   );
 }

@@ -3,27 +3,26 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+
+import Login from '../screens/Login';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AuctionScreen from '../screens/AuctionScreen';
 
-const config = Platform.select({
-  web: { headerMode: 'screen' },
-  default: {},
-});
-
 const HomeStack = createStackNavigator(
-  { Home: HomeScreen, }, {
-    
-  },
-  config
+  { Login: Login, }
 );
+
+Login.navigationOptions = {
+  header: null,
+}
+Login.path = '';
 
 HomeStack.navigationOptions = {
   tabBarLabel: "Início",
   tabBarIcon: ({ focused }) => (
+    activeTintColor='#000',
     <TabBarIcon name="home" />
   )
 };
@@ -31,7 +30,6 @@ HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   { Links: LinksScreen, },
-  config
 );
 
 LinksStack.navigationOptions = {
@@ -46,7 +44,6 @@ const AuctionStack = createStackNavigator(
   {
     Settings: AuctionScreen,
   },
-  config
 );
 
 AuctionStack.navigationOptions = {
@@ -61,7 +58,6 @@ const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
   },
-  config
 );
 
 SettingsStack.navigationOptions = {
@@ -76,7 +72,6 @@ const ProfileStack = createStackNavigator(
   {
     Settings: ProfileScreen,
   },
-  config
 );
 
 ProfileStack.navigationOptions = {
@@ -99,7 +94,8 @@ const tabNavigator = createBottomTabNavigator({
       backgroundColor: '#000',
       tintColor: '#fff',
     }
-  }
+  },
+  activeTintColor: '#f0edf6'
 });
 
 tabNavigator.path = '';
