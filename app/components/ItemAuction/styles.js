@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         elevation: 21,
         height: 120,
         overflow: "hidden",
+        marginVertical: 10,
     },
     mainImage: {
         height: 120,

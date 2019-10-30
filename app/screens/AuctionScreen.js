@@ -26,20 +26,16 @@ import ItemAuction from '../components/ItemAuction';
 
 class AuctionScreen extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       loading: true,
       dataSource:[]
-    };
+    }
   }
 
-  static propTypes = {
-    items: PropTypes.array.isRequired
-  };
-
   componentDidMount(){
-    fetch("https://msayegh-30d8d.firebaseio.com")
+    fetch("https://msayegh-30d8d.firebaseio.com/ms_leiloes.json")
     .then(response => response.json())
     .then((responseJson)=> {
       this.setState({
@@ -50,63 +46,52 @@ class AuctionScreen extends React.Component {
     .catch(error=>console.log(error))
   }
 
-  readUserData() {
-    firebase.database().ref('/ms_leiloes/0/cidade').once('value', function (snapshot) {
-        console.log(snapshot.val())
-    });
-  }
-
   render() {
-
-    // if(this.state.loading){
-    // return (
-    //   <View style={styles.loader}> 
-    //     <ActivityIndicator size="large" color="#000" centerComponent/>
-    //   </View>
-    // )}
 
     if (!firebase.apps.length) { 
       firebase.initializeApp(ApiKeys.FirebaseConfig);
     }
 
+    if(this.state.loading){
     return (
-      <>
-        
-
-        <Header 
-          centerComponent={ <Image source={ Logo } /> }
-          backgroundColor= "#000"
-        />
-        
-        <ScrollView style={styles.container}>
-          <View>
-            <View><Text style={styles.title}>Nossos últimos leilões</Text></View>
-            <Tabs />
-          </View>
-
-          <View>
-            <View><Text style={styles.title}>Leilões ativos</Text></View>
-            <ItemAuction style={ styles.container } />
-          </View>
-          
-          <FlatList
-              data= {this.state.dataSource}
-              ItemSeparatorComponent = {this.FlatListItemSeparator}
-              renderItem= {item=> this.renderItem(item)}
-              keyExtractor= {item=>item.id.toString()}
+      <View style={styles.loader}> 
+        <ActivityIndicator size="large" color="#000" centerComponent/>
+      </View>
+    )} else {
+      return (
+        <>
+          <Header 
+            centerComponent={ <Image source={ Logo } /> }
+            backgroundColor= "#000"
           />
-        
-        </ScrollView>
-      </>
-    );
-  }
+          
+          <ScrollView style={styles.container}>
+            <View>
+              <View><Text style={styles.title}>Leilões em andamento</Text></View>
+              <Tabs />
+            </View>
 
-  renderItem = (data) =>
-  <TouchableOpacity style={styles.list}>
-    <Text style={styles.lightText}>{data.item.cidade}</Text>
-    {/* <Text style={styles.lightText}>{data.item.email}</Text>
-    <Text style={styles.lightText}>{data.item.company.name}</Text> */}
-  </TouchableOpacity>
+            <View>
+              <View><Text style={styles.title}>Leilões ativos</Text></View>
+              <ItemAuction style={ styles.container } />
+            </View>
+            
+            <FlatList
+                data= {this.state.dataSource}
+                ItemSeparatorComponent = {this.FlatListItemSeparator}
+                renderItem= {({item}) => 
+                <View>
+                  <ItemAuction style={styles.container}>
+                    <Text style={{color: '#000'}}>{item.titulo}</Text>
+                  </ItemAuction>
+                </View>}
+            />
+          
+          </ScrollView>
+        </>
+      );
+    }
+  }
 }
 
 AuctionScreen.navigationOptions = {
