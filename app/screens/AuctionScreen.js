@@ -20,9 +20,10 @@ import {
 
 import styles from '../screens/Styles/HomeStyles';
 import TabStyles from '../screens/Styles/TabStyles';
+import itemAuction from './../components/ItemAuction/styles';
 
 import Tabs from '../components/Tabs';
-import ItemAuction from '../components/ItemAuction';
+//import ItemAuction from '../components/ItemAuction';
 
 class AuctionScreen extends React.Component {
 
@@ -34,17 +35,40 @@ class AuctionScreen extends React.Component {
     }
   }
 
-  componentDidMount(){
-    fetch("https://msayegh-30d8d.firebaseio.com/ms_leiloes.json")
-    .then(response => response.json())
-    .then((responseJson)=> {
-      this.setState({
-        loading: false,
-        dataSource: responseJson
-      })
-    })
-    .catch(error=>console.log(error))
+  async componentDidMount(){
+    try {
+      fetch("https://msayegh-30d8d.firebaseio.com/ms_leiloes.json")
+      .then(response => response.json())
+      .then((responseJson)=> {
+        this.setState({
+          loading: false,
+          dataSource: responseJson
+        })
+      }) 
+    } catch (err) {
+      //.catch(error=>console.log(error))
+      console.log("Error fetching data-----------", err);
+    }
   }
+
+  _renderItem = ({ item }) => (
+    <TouchableOpacity>
+      {item.ativo == '0' ?
+      <View style={ itemAuction.container }>
+          <View style={ itemAuction.descriptionContainer }>
+            <View>
+              <Text>Início: {item.dt_inicio}</Text>
+            </View>
+            <View>
+              <Text>NOVO</Text>
+              <Text style={ itemAuction.title }>{item.titulo}</Text>
+            </View>
+          </View>
+      </View> : null
+      }
+    </TouchableOpacity>
+          
+  );
 
   render() {
 
@@ -52,7 +76,7 @@ class AuctionScreen extends React.Component {
       firebase.initializeApp(ApiKeys.FirebaseConfig);
     }
 
-    if(this.state.loading){
+    if(this.state.loading)  {
     return (
       <View style={styles.loader}> 
         <ActivityIndicator size="large" color="#000" centerComponent/>
@@ -73,20 +97,15 @@ class AuctionScreen extends React.Component {
 
             <View>
               <View><Text style={styles.title}>Leilões ativos</Text></View>
-              <ItemAuction style={ styles.container } />
+              
+              
+                <FlatList
+                  data = {this.state.dataSource}
+                  ItemSeparatorComponent = {this.FlatListItemSeparator}
+                  renderItem = {this._renderItem}
+                  keyExtractor = {(item, index) => index}
+                />
             </View>
-            
-            <FlatList
-                data= {this.state.dataSource}
-                ItemSeparatorComponent = {this.FlatListItemSeparator}
-                renderItem= {({item}) => 
-                <View>
-                  <ItemAuction style={styles.container}>
-                    <Text style={{color: '#000'}}>{item.titulo}</Text>
-                  </ItemAuction>
-                </View>}
-            />
-          
           </ScrollView>
         </>
       );

@@ -64,6 +64,11 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         elevation: 21,
       },
+      loader: {
+        marginTop: 200,
+        alignItems: "center", 
+        justifyContent: "center",
+      },
       buttonEmpty: {
         backgroundColor: 'rgba(255,255,255,0)',
         textAlign: "center",

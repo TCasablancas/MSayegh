@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         elevation: 21,
         height: 120,
-        overflow: "hidden",
+        //overflow: "hidden",
         marginVertical: 10,
     },
     mainImage: {
@@ -27,8 +27,15 @@ const styles = StyleSheet.create({
         borderRightColor: '#f9f9f9',
     },
     descriptionContainer: {
-        marginLeft: 140,
-        height: 120,
+        // marginLeft: 140,
+        // height: 120,
+        // width: 220,
+        // zIndex: 99,
+        padding: 10,
+    },
+    title: {
+        fontFamily: 'avenir-black',
+        fontSize: 16,
     },
 });
 
