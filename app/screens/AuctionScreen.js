@@ -2,6 +2,7 @@ import { Header } from 'react-native-elements';
 import Logo from './../assets/images/miltonSayegh.png';
 import ApiKeys from './../services/ApiKeys';
 import * as firebase from 'firebase';
+import Moment from 'moment';
 
 import PropTypes from 'prop-types';
 
@@ -23,7 +24,6 @@ import TabStyles from '../screens/Styles/TabStyles';
 import itemAuction from './../components/ItemAuction/styles';
 
 import Tabs from '../components/Tabs';
-//import ItemAuction from '../components/ItemAuction';
 
 class AuctionScreen extends React.Component {
 
@@ -46,31 +46,36 @@ class AuctionScreen extends React.Component {
         })
       }) 
     } catch (err) {
-      //.catch(error=>console.log(error))
       console.log("Error fetching data-----------", err);
     }
   }
 
   _renderItem = ({ item }) => (
-    <TouchableOpacity>
+    <View>
       {item.ativo == '0' ?
       <View style={ itemAuction.container }>
+        <TouchableOpacity activeOpacity="1">
           <View style={ itemAuction.descriptionContainer }>
             <View>
-              <Text>Início: {item.dt_inicio}</Text>
-            </View>
-            <View>
-              <Text>NOVO</Text>
+              {/* <Text>NOVO</Text> */}
               <Text style={ itemAuction.title }>{item.titulo}</Text>
             </View>
+            <View>
+              <Text style={ itemAuction.date }>{ Moment(item.dt_inicio).format('DD/MM/YYYY [as] h:mm') }</Text>
+            </View>
+            <View style={ itemAuction.status }>
+              <Text style={ itemAuction.statusTitle }>{item.id_status_leilao}</Text>
+            </View>
           </View>
+        </TouchableOpacity>
       </View> : null
       }
-    </TouchableOpacity>
-          
+    </View>
   );
 
   render() {
+
+    Moment.locale('en');
 
     if (!firebase.apps.length) { 
       firebase.initializeApp(ApiKeys.FirebaseConfig);
@@ -90,10 +95,10 @@ class AuctionScreen extends React.Component {
           />
           
           <ScrollView style={styles.container}>
-            <View>
+            {/* <View>
               <View><Text style={styles.title}>Leilões em andamento</Text></View>
               <Tabs />
-            </View>
+            </View> */}
 
             <View>
               <View><Text style={styles.title}>Leilões ativos</Text></View>
@@ -104,6 +109,7 @@ class AuctionScreen extends React.Component {
                   ItemSeparatorComponent = {this.FlatListItemSeparator}
                   renderItem = {this._renderItem}
                   keyExtractor = {(item, index) => index}
+                  
                 />
             </View>
           </ScrollView>

@@ -3,18 +3,18 @@ import { StyleSheet, } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         borderRadius: 6,
-        backgroundColor: '#fff',
-        shadowColor: '#c3c3c3',
-        shadowOffset: {
-          width: 0,
-          height: 10,
-        },
-        shadowOpacity: 0.9,
-        shadowRadius: 10,
-        elevation: 21,
+        backgroundColor: '#e0e0e0',
+        // shadowColor: '#c3c3c3',
+        // shadowOffset: {
+        //   width: 0,
+        //   height: 10,
+        // },
+        // shadowOpacity: 0.9,
+        // shadowRadius: 10,
+        // elevation: 21,
         height: 120,
-        //overflow: "hidden",
         marginVertical: 10,
+        paddingTop: 10,
     },
     mainImage: {
         height: 120,
@@ -32,9 +32,28 @@ const styles = StyleSheet.create({
         // width: 220,
         // zIndex: 99,
         padding: 10,
+        alignItems: 'center',
     },
     title: {
         fontFamily: 'avenir-black',
+        fontSize: 20,
+        height: 30,
+    },
+    status: {
+        flex: 1,
+        padding: 8,
+        backgroundColor: '#000',
+        borderRadius: 10,
+    },
+    date:{
+        fontFamily: 'avenir-black',
+        fontSize: 14,
+        marginBottom: 10,
+    },
+    statusTitle: {
+        color: '#fff',
+        fontFamily: 'avenir-roman',
+        textAlign: "center",
         fontSize: 16,
     },
 });
