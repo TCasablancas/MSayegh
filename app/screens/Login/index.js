@@ -17,6 +17,7 @@ import homeStyles from './../Styles/HomeStyles';
 
 import api from '../../services/api';
 import HomeScreen from '../HomeScreen';
+import AuctionScreen from './../AuctionScreen';
 
 import Logo from './../../assets/images/miltonSayegh.png'
 
@@ -29,50 +30,53 @@ import '@firebase/firestore';
 
 class Login extends React.Component {
 
-    state = {
-        email: '',
-        password: '',
-        isAuth: false,
-    };
+    // state = {
+    //     email: '',
+    //     password: '',
+    //     isAuth: false,
+    // };
 
-    login = async () => {
-        const  { email, password } = this.state;
+    // login = async () => {
+    //     const  { email, password } = this.state;
 
-        try {
-            const user = await firebase.auth()
-                .signInWithEmailAndPassword(email, password);
+    //     try {
+    //         const user = await firebase.auth()
+    //             .signInWithEmailAndPassword(email, password);
 
-            this.state({ isAuth: true });
-            this.props.navigation.navigate('HomeScreen');
-            console.log(user);
-        } catch (err){
-            console.log(err);
-        }
-    };
+    //         this.state({ isAuth: true });
+    //         this.props.navigation.navigate('HomeScreen');
+    //         console.log(user);
+    //     } catch (err){
+    //         console.log(err);
+    //     }
+    // };
 
     static navigationOptions = {
         header: null,
     };
 
-    // constructor(props) {
-    //     super(props);
-    //         this.state = {
-    //             email: "",
-    //             password: ""
-    //     };
-    // }
+    constructor(props) {
+        super(props);
+            this.state = {
+                email: "",
+                password: "",
+                isAuthorized: false,
+        };
+    }
 
-    // SignIn = (email, password, navigate) => {
-    //     try {
-    //       firebase.auth().signInWithEmailAndPassword(email, password)
-    //       firebase.auth().onAuthStateChanged(user => {
-    //         console.log(email);
-    //         this.props.navigation.navigate('HomeScreen')
-    //       })
-    // } catch (error) {
-    //         console.log(error.toString(error));
-    //     }
-    // };
+    _SignIn = ({email, password, isAuthorized}) => {
+
+    try {
+        firebase.auth().signInWithEmailAndPassword(email, password, isAuthorized)
+        firebase.auth().onAuthStateChanged(email => {
+            console.log(email);
+            this.state({ isAuthorized: true });
+            this.props.navigation.navigate('HomeScreen')
+        })
+    } catch (error) {
+            console.log(error.toString(error));
+        }
+    };
 
     render() {
         return (
@@ -111,7 +115,7 @@ class Login extends React.Component {
                     <TouchableOpacity 
                         style={ styles.btnLogin } 
                         onPress={ () => this.props.navigation.navigate('HomeScreen') }
-                        //onPress={ () => this.SignIn }
+                        //onPress={ () => this._SignIn }
                         >
                         <Text style={ styles.btnText }>entrar</Text>
                     </TouchableOpacity>
@@ -217,10 +221,11 @@ class SignUp extends React.Component {
     }
 }
 
-const RootStack = createSwitchNavigator({
+const RootStack = createStackNavigator({
     Login: Login,
     SignUp: SignUp,
     HomeScreen: { screen: HomeScreen },
+    Auction: { screen: AuctionScreen },
 }, {
     initialRouteName: 'Login',
 });

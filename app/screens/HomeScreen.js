@@ -17,16 +17,19 @@ import {
 
 import homeStyles from './Styles/HomeStyles';
 import Tabs from '../components/Tabs';
-import TabStyles from './Styles/TabStyles';
 
 import Logo from './../assets/images/miltonSayegh.png';
 import Ring from './../assets/images/ring.png';
 
-export default function HomeScreen() {
+import Login from './Login';
+
+const HomeScreen = () => {
 
   return (
-
+    
       <>
+      <Login />
+
       <Header 
         centerComponent={ <Image source={ Logo } /> }
         backgroundColor= "#000"
@@ -73,11 +76,12 @@ export default function HomeScreen() {
             </View>
           </View>
       </ScrollView>
-
       </>
-  );
+  )
 }
 
 HomeScreen.navigationOptions = {
   header: null,
 };
+
+export default HomeScreen;

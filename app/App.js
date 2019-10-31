@@ -1,24 +1,29 @@
 import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
-import { Platform, Image, StatusBar, StyleSheet, View } from 'react-native';
+import { 
+  StatusBar, 
+  StyleSheet, 
+  View 
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import ApiKeys from './services/ApiKeys';
 import * as firebase from 'firebase';
-//import * as firebase from 'firebase/analytics';
-
-import { Header, headerTitle, headerRight } from 'react-native-elements';
-import Logo from './assets/images/miltonSayegh.png';
 
 import AppNavigator from './navigation/AppNavigator';
 
-import Loading from './screens/LoadingScreen';
+import Menu from './components/Menu';
+
+//MARK: Importing Pages
 import Login from './screens/Login/';
 import Main from './screens/HomeScreen';
+import Search from './screens/LinksScreen';
+import Auction from './screens/AuctionScreen';
+import Favourites from './screens/SettingsScreen';
+import Profile from './screens/ProfileScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -39,23 +44,15 @@ export default function App(props) {
   } else {
     return (
       <View style={styles.container}>
-        <StatusBar 
-          barStyle="light-content"
-          />
-      
-      <AppNavigator />
+        <StatusBar barStyle="light-content"/>
+{/* 
+        <Login />
+        <Menu /> */}
+        <AppNavigator />
       </View>
     );
   }
 }
-
-// const AppSwitchNavigator = createSwitchNavigator({
-//     LoadingScreen: Loading,
-//     LoginScree: Login,
-//     MainScreen: Main,
-// })
-
-// const AppNavigator = createAppContainer(AppSwitchNavigator);
 
 async function loadResourcesAsync() {
   await Promise.all([
@@ -66,6 +63,18 @@ async function loadResourcesAsync() {
     }),
   ]);
 }
+
+const RootStack = createStackNavigator({
+  Login: { screen: Login },
+  Main: { screen: Main },
+  Search: { screen: Search },
+  Auction: {screen: Auction },
+  Favourites: { screen: Favourites },
+  Profile: { screen: ProfileScreen },
+},
+{
+  initialRouteName:  'Login'
+})
 
 function handleLoadingError(error) {
   console.warn(error);
@@ -78,6 +87,6 @@ function handleFinishLoading(setLoadingComplete) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#f2f2f2',
   },
 });

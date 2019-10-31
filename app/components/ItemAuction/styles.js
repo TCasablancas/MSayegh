@@ -40,21 +40,39 @@ const styles = StyleSheet.create({
         height: 30,
     },
     status: {
-        flex: 1,
-        padding: 8,
+        height: 30,
+        paddingVertical: 8,
+        paddingHorizontal: 20,
         backgroundColor: '#000',
-        borderRadius: 10,
+        borderRadius: 23,
     },
     date:{
         fontFamily: 'avenir-black',
         fontSize: 14,
         marginBottom: 10,
+        color: 'peru',
     },
     statusTitle: {
         color: '#fff',
         fontFamily: 'avenir-roman',
         textAlign: "center",
         fontSize: 16,
+    },
+
+    greenBg: {
+        backgroundColor: 'limegreen',
+    },
+    grayBg: {
+        backgroundColor: 'lightslategrey',
+    },
+    redBg: {
+
+    },
+    yellowBg: {
+
+    },
+    orangeBg: {
+
     },
 });
 

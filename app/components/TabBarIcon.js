@@ -8,7 +8,7 @@ export default function TabBarIcon(props) {
     <Feather
       name={props.name}
       size={22}
-      style={{ marginBottom: -8 }}
+      style={{ marginTop: 5, flex: 1, textAlign: "center", height: 30, }}
       color="#fff"
     />
   );

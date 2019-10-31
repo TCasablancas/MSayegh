@@ -11,11 +11,11 @@ import ProfileScreen from '../screens/ProfileScreen';
 import AuctionScreen from '../screens/AuctionScreen';
 import HomeScreen from '../screens/HomeScreen';
 
-Login.navigationOptions = {
-  header: null,
-  //tabBarVisible: false,
-}
-Login.path = '';
+
+// Login.navigationOptions = {
+//   tabBarVisible: true,
+//   header: null,
+// }
 
 const HomeStack = createStackNavigator(
   { Home: HomeScreen, }
@@ -84,7 +84,7 @@ ProfileStack.navigationOptions = {
 ProfileStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  Login,
+  //Login,
   HomeStack,
   LinksStack,
   AuctionStack,
@@ -93,6 +93,7 @@ const tabNavigator = createBottomTabNavigator({
 }, {
   tabBarOptions: {
     style: {
+      paddingTop: 6,
       backgroundColor: '#000',
       tintColor: '#fff',
     }

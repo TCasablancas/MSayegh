@@ -4,7 +4,7 @@ import ApiKeys from './../services/ApiKeys';
 import * as firebase from 'firebase';
 import Moment from 'moment';
 
-import PropTypes from 'prop-types';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 
 import React from 'react';
 import {
@@ -16,7 +16,8 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
-  FlatList
+  FlatList,
+  SegmentedControlIOS,
 } from 'react-native';
 
 import styles from '../screens/Styles/HomeStyles';
@@ -27,13 +28,22 @@ import Tabs from '../components/Tabs';
 
 class AuctionScreen extends React.Component {
 
+
   constructor() {
     super();
     this.state = {
       loading: true,
-      dataSource:[]
+      dataSource:[],
+      selectedIndex: 0
     }
   }
+
+  handleIndexChange = index => {
+    this.setState({
+      ...this.state,
+      selectedIndex: index
+    });
+  };
 
   async componentDidMount(){
     try {
@@ -52,29 +62,46 @@ class AuctionScreen extends React.Component {
 
   _renderItem = ({ item }) => (
     <View>
-      {item.ativo == '0' ?
       <View style={ itemAuction.container }>
         <TouchableOpacity activeOpacity="1">
           <View style={ itemAuction.descriptionContainer }>
+
             <View>
-              {/* <Text>NOVO</Text> */}
               <Text style={ itemAuction.title }>{item.titulo}</Text>
             </View>
             <View>
               <Text style={ itemAuction.date }>{ Moment(item.dt_inicio).format('DD/MM/YYYY [as] h:mm') }</Text>
             </View>
-            <View style={ itemAuction.status }>
-              <Text style={ itemAuction.statusTitle }>{item.id_status_leilao}</Text>
+            <View style={Object.assign({},
+                      itemAuction.status,
+                        ( item.ativo == "0") ? itemAuction.grayBg 
+                      : ( item.ativo == "1") ? itemAuction.greenBg
+                      : ( item.ativo == "2") ? "Sustado" 
+                      : ( item.ativo == "3") ? temAuction.redBg 
+                      : ( item.ativo == "4") ? "Em Loteamento" 
+                      : null
+              )}>
+                <Text style={ itemAuction.statusTitle }>
+                    {
+                        ( item.ativo == "0") ? "Aguardando Início" 
+                      : ( item.ativo == "1") ? "Em Andamento" 
+                      : ( item.ativo == "2") ? "Sustado" 
+                      : ( item.ativo == "3") ? "Encerrado" 
+                      : ( item.ativo == "4") ? "Em Loteamento" 
+                      : null
+                    }
+                </Text>
             </View>
+
           </View>
         </TouchableOpacity>
-      </View> : null
-      }
+      </View>
     </View>
   );
 
   render() {
 
+    const { selectedIndex, selectedIndices, customStyleIndex } = this.state;
     Moment.locale('en');
 
     if (!firebase.apps.length) { 
@@ -89,29 +116,41 @@ class AuctionScreen extends React.Component {
     )} else {
       return (
         <>
+          
           <Header 
             centerComponent={ <Image source={ Logo } /> }
             backgroundColor= "#000"
           />
-          
-          <ScrollView style={styles.container}>
-            {/* <View>
-              <View><Text style={styles.title}>Leilões em andamento</Text></View>
-              <Tabs />
-            </View> */}
+          <SegmentedControlTab
+            values={["todos", "em andamento", "aguardando início"]}
+            selectedIndex={this.state.selectedIndex}
+            onTabPress={this.handleIndexChange}
+            tabStyle={{ borderColor: '#fff' }}
+            tabTextStyle={{ fontFamily: 'avenir-roman', color: '#000'  }}
+            activeTabStyle={{ backgroundColor: 'peru' }}
+            activeTabTextStyle={{ fontFamily: 'avenir-black', marginTop: 4 }}
+            tabBadgeStyle={{ color: '#000', }}
+            tabsContainerStyle={{ paddingVertical: 15, paddingHorizontal: 30 }}
+          />
 
-            <View>
-              <View><Text style={styles.title}>Leilões ativos</Text></View>
-              
-              
+          <ScrollView style={styles.container}>
+                
+                <View>
+                  <Text style={styles.title}>
+                    {
+                      selectedIndex == 0 ? "Todos os Leilões" :
+                      selectedIndex == 1 ? "Leilões em Andamento" :
+                      selectedIndex == 2 ? "Leilões Encerrados" : null
+                    }
+                  </Text>
+                </View>
                 <FlatList
                   data = {this.state.dataSource}
-                  ItemSeparatorComponent = {this.FlatListItemSeparator}
-                  renderItem = {this._renderItem}
+                  renderItem = {
+                    selectedIndex == 0 ? this._renderItem : null
+                  }
                   keyExtractor = {(item, index) => index}
-                  
                 />
-            </View>
           </ScrollView>
         </>
       );
