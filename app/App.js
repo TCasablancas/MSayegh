@@ -1,10 +1,13 @@
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
+import { Header } from 'react-native-elements';
+import Logo from './assets/images/miltonSayegh.png';
 import { 
   StatusBar, 
   StyleSheet, 
-  View 
+  View,
+  Image
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from 'react-navigation';
@@ -22,8 +25,8 @@ import Main from './screens/HomeScreen';
 import Search from './screens/LinksScreen';
 import Auction from './screens/AuctionScreen';
 import Favourites from './screens/SettingsScreen';
-import Profile from './screens/ProfileScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import LoteScreen from './screens/Lote';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -45,8 +48,8 @@ export default function App(props) {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content"/>
-{/* 
-        <Login />
+
+        {/*<Login />
         <Menu /> */}
         <AppNavigator />
       </View>
@@ -71,9 +74,9 @@ const RootStack = createStackNavigator({
   Auction: {screen: Auction },
   Favourites: { screen: Favourites },
   Profile: { screen: ProfileScreen },
-},
-{
-  initialRouteName:  'Login'
+  Lote: LoteScreen,
+}, {
+  initialRouteName:  'Login',
 })
 
 function handleLoadingError(error) {

@@ -30,7 +30,7 @@ const Menu = ({ navigation }) => {
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={ styles.menuItem } 
-                        onPress={ () => navigation.navigate('Auction') }>
+                        onPress={ () => this.props.navigation.navigate('Auction') }>
                         <TabBarIcon name="align-justify" />
                         <Text style={ styles.menuItemText }>leilões</Text>
                     </TouchableOpacity>

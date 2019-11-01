@@ -10,7 +10,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AuctionScreen from '../screens/AuctionScreen';
 import HomeScreen from '../screens/HomeScreen';
-
+import LoteScreen from '../screens/Lote';
 
 // Login.navigationOptions = {
 //   tabBarVisible: true,
@@ -47,7 +47,9 @@ LinksStack.path = '';
 const AuctionStack = createStackNavigator(
   {
     Settings: AuctionScreen,
-  },
+  }, {
+    headerMode: 'none',
+  }
 );
 AuctionStack.navigationOptions = {
   tabBarLabel: 'Leilões',
@@ -83,6 +85,13 @@ ProfileStack.navigationOptions = {
 };
 ProfileStack.path = '';
 
+const AuctionNavigation = createStackNavigator({
+  Auction: AuctionScreen,
+  Lote: LoteScreen,
+}, {
+  initialRouteName: 'Auction',
+});
+
 const tabNavigator = createBottomTabNavigator({
   //Login,
   HomeStack,
@@ -101,6 +110,8 @@ const tabNavigator = createBottomTabNavigator({
   activeTintColor: '#f0edf6',
   animationEnabled: true,
   swipeEnabled: true,
+}, {
+  headerMode: 'none',
 });
 
 tabNavigator.path = '';

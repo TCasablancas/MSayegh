@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         elevation: 21,
       },
       loader: {
-        marginTop: 200,
+        marginTop: 320,
         alignItems: "center", 
         justifyContent: "center",
       },

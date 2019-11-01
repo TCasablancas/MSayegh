@@ -1,33 +1,34 @@
-import { Header } from 'react-native-elements';
 import Logo from './../assets/images/miltonSayegh.png';
 import ApiKeys from './../services/ApiKeys';
 import * as firebase from 'firebase';
 import Moment from 'moment';
+import { Header } from 'react-native-elements';
 
+import apiKeys from './../services/ApiKeys';
+
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import {
   Image,
-  Platform,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
   ActivityIndicator,
   FlatList,
-  SegmentedControlIOS,
 } from 'react-native';
 
 import styles from '../screens/Styles/HomeStyles';
-import TabStyles from '../screens/Styles/TabStyles';
 import itemAuction from './../components/ItemAuction/styles';
-
-import Tabs from '../components/Tabs';
+import LotesScreen from './Lotes';
 
 class AuctionScreen extends React.Component {
 
+  static navigationOptions = {
+    header: null,
+  };
 
   constructor() {
     super();
@@ -63,9 +64,18 @@ class AuctionScreen extends React.Component {
   _renderItem = ({ item }) => (
     <View>
       <View style={ itemAuction.container }>
-        <TouchableOpacity activeOpacity="1">
+        <TouchableOpacity activeOpacity="1"  
+          onPress={() => 
+            this.props.navigation.navigate('Lotes',{
+              title: item.titulo,
+              status: item.id_status_leilao,
+              endDate: item.dt_fim,
+              local: item.cidade,
+              //lotes: item.
+            })
+          }>
           <View style={ itemAuction.descriptionContainer }>
-
+          
             <View>
               <Text style={ itemAuction.title }>{item.titulo}</Text>
             </View>
@@ -92,7 +102,7 @@ class AuctionScreen extends React.Component {
                     }
                 </Text>
             </View>
-
+                        
           </View>
         </TouchableOpacity>
       </View>
@@ -100,8 +110,9 @@ class AuctionScreen extends React.Component {
   );
 
   render() {
+    const { selectedIndex } = this.state;
+    const { navigate } = this.props.navigation;
 
-    const { selectedIndex, selectedIndices, customStyleIndex } = this.state;
     Moment.locale('en');
 
     if (!firebase.apps.length) { 
@@ -111,7 +122,7 @@ class AuctionScreen extends React.Component {
     if(this.state.loading)  {
     return (
       <View style={styles.loader}> 
-        <ActivityIndicator size="large" color="#000" centerComponent/>
+        <ActivityIndicator size="large" color="#000"/>
       </View>
     )} else {
       return (
@@ -121,14 +132,15 @@ class AuctionScreen extends React.Component {
             centerComponent={ <Image source={ Logo } /> }
             backgroundColor= "#000"
           />
+
           <SegmentedControlTab
             values={["todos", "em andamento", "aguardando início"]}
             selectedIndex={this.state.selectedIndex}
             onTabPress={this.handleIndexChange}
-            tabStyle={{ borderColor: '#fff' }}
+            tabStyle={{ borderColor: '#fff', borderRadius: 0 }}
             tabTextStyle={{ fontFamily: 'avenir-roman', color: '#000'  }}
-            activeTabStyle={{ backgroundColor: 'peru' }}
-            activeTabTextStyle={{ fontFamily: 'avenir-black', marginTop: 4 }}
+            activeTabStyle={{ borderBottomColor: 'peru', borderBottomWidth: 2, backgroundColor: '#fff', }}
+            activeTabTextStyle={{ fontFamily: 'avenir-black', marginTop: 2, color: 'peru' }}
             tabBadgeStyle={{ color: '#000', }}
             tabsContainerStyle={{ paddingVertical: 15, paddingHorizontal: 30 }}
           />
@@ -147,20 +159,38 @@ class AuctionScreen extends React.Component {
                 <FlatList
                   data = {this.state.dataSource}
                   renderItem = {
-                    selectedIndex == 0 ? this._renderItem : null
+                    selectedIndex == 0 ? this._renderItem : 
+                    selectedIndex == 1 ? this._renderItem :
+                    selectedIndex == 2 ? this._renderItem :
+                    null
                   }
-                  keyExtractor = {(item, index) => index}
+                  keyExtractor = {(item, index) => index.id}
+                  onEndReachedThreshold={5}
                 />
           </ScrollView>
+
         </>
       );
     }
   }
 }
 
-AuctionScreen.navigationOptions = {
-  //title: "Leilões",
-  header: null
-};
+class Lote extends React.Component {
 
-export default AuctionScreen;
+  render(){
+    return (
+      <>
+        <LoteScreen />
+      </>
+    )
+  }
+}
+
+const MainNavigator = createStackNavigator({
+  Auction: { screen: AuctionScreen },
+  Lotes: { screen: LotesScreen },
+});
+
+export default createAppContainer(MainNavigator);
+
+//export default AuctionScreen;

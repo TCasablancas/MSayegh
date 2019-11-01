@@ -3,9 +3,7 @@ import { Header } from 'react-native-elements';
 
 import {
   Image,
-  Platform,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -21,6 +19,7 @@ import Tabs from '../components/Tabs';
 import Logo from './../assets/images/miltonSayegh.png';
 import Ring from './../assets/images/ring.png';
 
+import Menu from './../components/Menu';
 import Login from './Login';
 
 const HomeScreen = () => {
@@ -28,7 +27,6 @@ const HomeScreen = () => {
   return (
     
       <>
-      <Login />
 
       <Header 
         centerComponent={ <Image source={ Logo } /> }
@@ -76,6 +74,7 @@ const HomeScreen = () => {
             </View>
           </View>
       </ScrollView>
+
       </>
   )
 }
