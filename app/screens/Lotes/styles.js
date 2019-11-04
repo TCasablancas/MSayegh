@@ -28,23 +28,52 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     statusItem: {
-        flex: 4,
         padding: 10,
     },
+    first: {
+        flex: 3,
+    },
+    second: {
+        flex: 2
+    },
+    third: {
+        flex: 2
+    },
+    fourth: {
+        flex: 3
+    },
+    btnRegras: {
+        backgroundColor: '#000',
+        borderRadius: 4,
+        padding: 10,
+    },
+    btnRegrasText: {
+        fontSize: 10,
+        color: '#fff',
+        textAlign: "center",
+    } ,
     statusLeilao: {
-        justifyContent: "center",
-        //alignContent: "center",
         marginBottom: 20,
         marginTop: 10,
-        paddingHorizontal: 50,
-        backgroundColor: '#d3d3d3',
         borderRadius: 10,
-        //flex: 3,
+        paddingHorizontal: 90,
+        borderRadius: 15,
+        overflow: "hidden",
+        alignContent: "center",
     },
     callLeilao: {
-        alignContent: "center",
+        //alignContent: "center",
         textAlign: "center",
-        padding: 6
+        padding: 6,
+        paddingHorizontal: 50,
+        backgroundColor: '#d3d3d3',
+        borderRadius: 15,
+    },
+    statusLote:{ 
+        fontFamily: 'avenir-black',
+        fontSize: 12,
+        marginTop: 2,
+        textAlign: "center",
     },
     call: {
         fontSize: 12,

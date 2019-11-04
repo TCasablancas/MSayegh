@@ -49,8 +49,7 @@ export default function App(props) {
       <View style={styles.container}>
         <StatusBar barStyle="light-content"/>
 
-        {/*<Login />
-        <Menu /> */}
+        {/*<Login /> */}
         <AppNavigator />
       </View>
     );

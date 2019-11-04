@@ -71,7 +71,7 @@ class AuctionScreen extends React.Component {
               status: item.id_status_leilao,
               endDate: item.dt_fim,
               local: item.cidade,
-              //lotes: item.
+              id: item.id,
             })
           }>
           <View style={ itemAuction.descriptionContainer }>

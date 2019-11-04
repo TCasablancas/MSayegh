@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
         paddingTop: 60,
         backgroundColor: '#000',
     },
+    containerLogin: {
+        marginTop: 150,
+    },
     headerTitle: {
         color: '#fff',
         fontSize: 22,

@@ -12,10 +12,10 @@ import AuctionScreen from '../screens/AuctionScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LoteScreen from '../screens/Lote';
 
-// Login.navigationOptions = {
-//   tabBarVisible: true,
-//   header: null,
-// }
+Login.navigationOptions = {
+  tabBarVisible: false,
+  header: null,
+}
 
 const HomeStack = createStackNavigator(
   { Home: HomeScreen, }

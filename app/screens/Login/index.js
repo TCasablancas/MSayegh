@@ -82,50 +82,52 @@ class Login extends React.Component {
         return (
             <View style={styles.container}>
 
-                { this.state.errorMessage && <Text style={{color: '#fff', fontSize: 22}}>{ this.state.errorMessage }</Text> }
+                <View style={styles.containerLogin}>
+                    { this.state.errorMessage && <Text style={{color: '#fff', fontSize: 22}}>{ this.state.errorMessage }</Text> }
 
-                <View>
-                    <Text style={ styles.darkLabel }>usuário</Text>
-                    <TextInput 
-                        placeholder="digite seu email cadastrado" 
-                        placeholderTextColor="#666" 
-                        style={ styles.input } 
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        //onChangeText={email => this.setState({ email })}
-                        //value={this.state.email}
-                    />
-                </View>
+                    <View>
+                        <Text style={ styles.darkLabel }>usuário</Text>
+                        <TextInput 
+                            placeholder="digite seu email cadastrado" 
+                            placeholderTextColor="#666" 
+                            style={ styles.input } 
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            //onChangeText={email => this.setState({ email })}
+                            //value={this.state.email}
+                        />
+                    </View>
 
-                <View>
-                    <Text style={ styles.darkLabel }>senha</Text>
-                    <TextInput 
-                        placeholder="digite sua senha" 
-                        secureTextEntry={true} 
-                        placeholderTextColor="#666" 
-                        style={ styles.input } 
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        //onChangeText={password => this.setState({ password })}    
-                        //value={ this.state.password }
-                    />
-                </View>
+                    <View>
+                        <Text style={ styles.darkLabel }>senha</Text>
+                        <TextInput 
+                            placeholder="digite sua senha" 
+                            secureTextEntry={true} 
+                            placeholderTextColor="#666" 
+                            style={ styles.input } 
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            //onChangeText={password => this.setState({ password })}    
+                            //value={ this.state.password }
+                        />
+                    </View>
 
-                <View>
-                    <TouchableOpacity 
-                        style={ styles.btnLogin } 
-                        onPress={ () => this.props.navigation.navigate('HomeScreen') }
-                        //onPress={ () => this._SignIn }
-                        >
-                        <Text style={ styles.btnText }>entrar</Text>
-                    </TouchableOpacity>
-                </View>
+                    <View>
+                        <TouchableOpacity 
+                            style={ styles.btnLogin } 
+                            onPress={ () => this.props.navigation.navigate('HomeScreen') }
+                            //onPress={ () => this._SignIn }
+                            >
+                            <Text style={ styles.btnText }>entrar</Text>
+                        </TouchableOpacity>
+                    </View>
 
-                <View>
-                    <Text style={ styles.darkLabelCenter }>Ainda não é cadastrado?</Text>
-                    <TouchableOpacity style={ styles.btnSignup }  onPress={() => this.props.navigation.push('SignUp')}>
-                        <Text style={ styles.btnSignupText }>cadastrar agora</Text>
-                    </TouchableOpacity>
+                    <View>
+                        <Text style={ styles.darkLabelCenter }>Ainda não é cadastrado?</Text>
+                        <TouchableOpacity style={ styles.btnSignup }  onPress={() => this.props.navigation.push('SignUp')}>
+                            <Text style={ styles.btnSignupText }>cadastrar agora</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );

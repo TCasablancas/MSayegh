@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import Moment from 'moment';
 
 import {
+    
     ScrollView,
     StatusBar,
     View,
@@ -13,7 +14,8 @@ import {
     Image,
     ActivityIndicator,
     FlatList,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
 } from 'react-native';
 
 import styles from './styles';
@@ -46,6 +48,7 @@ class Lotes extends React.Component {
     }
 
     async componentDidMount(){
+        const {params} = this.props.navigation.state;
         try {
             fetch("https://msayegh-30d8d.firebaseio.com/ms_lotes.json")
             .then(response => response.json())
@@ -97,21 +100,44 @@ class Lotes extends React.Component {
                 <View style={styles.containerHeader}>
                     <Text style={ styles.mainTitle }>{title}</Text>
                     <View style={ styles.statusLeilao }>
-                        <Text style={styles.callLeilao}>{status}</Text>
+                        <View style={Object.assign({},
+                            styles.callLeilao,
+                            status == "0" ? itemAuction.grayBg 
+                            : status == "1" ? itemAuction.greenBg
+                            : status == "2" ? "Sustado" 
+                            : status == "3" ? temAuction.redBg 
+                            : status == "4" ? "Em Loteamento" 
+                            : null
+                        )}>
+                            <Text style={styles.statusLote}>{
+                                status == "0" ? "Aguardando Início" :
+                                status == "1" ? "Em Andamento" :
+                                status == "2" ? "Sustado" :
+                                status == "3" ? "Encerrado" :
+                                status == "4" ? "Em Loteamento" :
+                                null
+                            }
+                            </Text>
+                        </View>
                     </View>
                     
                     <View style={ styles.statusBar }>
-                        <View style={ styles.statusItem }>
+                        <View style={ styles.statusItem, styles.first }>
                             <Text style={styles.call}>termina em</Text>
                             <Text style={styles.callData}>{Moment(endDate).format('DD/MM [as] H:mm')}</Text>
                         </View>
-                        <View style={ styles.statusItem }>
+                        <View style={ styles.statusItem, styles.second }>
                             <Text style={styles.call}>local</Text>
                             <Text style={styles.callData}>{local}</Text>
                         </View>
-                        <View style={ styles.statusItem }>
+                        <View style={ styles.statusItem, styles.third }>
                             <Text style={styles.call}>lotes</Text>
-                            <Text style={styles.callData}>{}</Text>
+                            <Text style={styles.callData}>{this.state.dataSource.length}</Text>
+                        </View>
+                        <View style={ styles.statusItem, styles.fourth }>
+                            <TouchableOpacity style={styles.btnRegras}>
+                                <Text style={styles.btnRegrasText}>Regras e Condições</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -119,7 +145,7 @@ class Lotes extends React.Component {
                 <ScrollView>
                     <View>
                         <FlatList
-                            data = {this.state.dataSource}
+                            data = {this.state.dataSource.id}
                             renderItem = { this._renderItem }
                             keyExtractor = {(item, index) => index}
                             numColumns = "2"
